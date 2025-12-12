@@ -1,3 +1,11 @@
 {
-  "test": "Esta es una cadena de prueba para la internacionalización."
+  "NAVBAR": {
+    "HOME": "Inicio",
+    "ABOUT": "Sobre mí",
+    "EXPERIENCE": "Experiencia",
+    "SKILLS": "Habilidades",
+    "PROJECTS": "Proyectos",
+    "EDUCATION": "Educación",
+    "CONTACT": "Contacto"
+  }
 }

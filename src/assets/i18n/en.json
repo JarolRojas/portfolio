@@ -1,3 +1,11 @@
 {
-  "test": "This is a test string for internationalization."
+  "NAVBAR": {
+    "HOME": "Home",
+    "ABOUT": "About Me",
+    "EXPERIENCE": "Experience",
+    "SKILLS": "Skills",
+    "PROJECTS": "Projects",
+    "EDUCATION": "Education",
+    "CONTACT": "Contact"
+  }
 }
