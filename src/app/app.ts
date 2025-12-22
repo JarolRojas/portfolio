@@ -11,5 +11,4 @@ import { I18nService } from './core/services/i18n.service';
 })
 export class App {
   private readonly i18n = inject(I18nService);
-  protected readonly title = signal('portfolio');
 }

@@ -5,6 +5,7 @@ import { Sections } from '../../models/interfaces/sections';
 import { RouterLink, RouterLinkActive } from "@angular/router";
 import { NavbarBurger } from './burger/navbar-burger';
 import { Logo } from "./logo/logo";
+import { NAV_SECTIONS } from '../../constants/navigation';
 @Component({
   selector: 'app-navbar',
   imports: [TranslateModule, TraductionComponent, RouterLink, NavbarBurger, Logo, RouterLinkActive],
@@ -14,14 +15,7 @@ import { Logo } from "./logo/logo";
 export class Navbar {
 isMenuOpen = signal(false);
 
-sections: Sections[] = [
-  { name: 'NAVBAR.HOME', route: '/', icon: 'home' },
-  { name: 'NAVBAR.ABOUT', route: '/about', icon: 'badge' },
-  { name: 'NAVBAR.EXPERIENCE', route: '/experience', icon: 'work' },
-  { name: 'NAVBAR.SKILLS', route: '/skills', icon: 'psychology' },
-  { name: 'NAVBAR.PROJECTS', route: '/projects', icon: 'terminal' },
-  { name: 'NAVBAR.CONTACT', route: '/contact', icon: 'alternate_email' },
-];
+sections: Sections[] = NAV_SECTIONS;
 
 toggleMenu() {
   this.isMenuOpen.update((current) => !current);
