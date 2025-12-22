@@ -1,4 +1,4 @@
-import { Sections } from "../models/interfaces/sections";
+import { Sections } from "../models/interfaces/section";
 
 export const NAV_SECTIONS: Sections[] = [
   { name: 'NAVBAR.HOME', route: '/', icon: 'home' },

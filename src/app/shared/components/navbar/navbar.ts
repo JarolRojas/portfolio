@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { TraductionComponent } from "./traduction/traduction";
-import { Sections } from '../../models/interfaces/sections';
+import { Sections } from '../../models/interfaces/section';
 import { RouterLink, RouterLinkActive } from "@angular/router";
 import { NavbarBurger } from './burger/navbar-burger';
 import { Logo } from "./logo/logo";
