@@ -5,6 +5,6 @@ export interface Education {
   description: string;
   startDate: string;
   endDate?: string;
-  image?: string; // Logo of the institution
-  certificateLink?: string; // Link to the certificate or diploma
+  image?: string;
+  certificateLink?: string;
 }

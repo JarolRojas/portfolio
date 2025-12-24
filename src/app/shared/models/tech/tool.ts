@@ -1,6 +1,6 @@
-import { Category } from '../type/category';
+import { Category } from './category.type';
 
-export interface Skill {
+export interface Tool {
   id: string;
   name: string;
   icon: string;

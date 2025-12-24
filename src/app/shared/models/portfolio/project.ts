@@ -6,5 +6,5 @@ export interface Project {
   tools?: string[];
   repoUrl?: string;
   liveUrl?: string;
-  images?: string[]; // Screenshot or image representing the project
+  images?: string[];
 }
