@@ -7,6 +7,26 @@ export class ContactVcardService {
   constructor() {}
 
   openVCard(): void {
-    window.location.href = '/jarol-rojas.vcf';
+    const vcard = `BEGIN:VCARD
+VERSION:3.0
+FN:Jarol Rojas Reyes
+N:Reyes;Jarol;;;
+TEL:+34699355853
+EMAIL:jr.rojas0327@gmail.com
+URL:https://jarolrojas.dev
+TITLE:Desarrollador de Software
+END:VCARD`;
+
+    // Crear un data URL con el tipo MIME correcto
+    const encodedVCard = encodeURIComponent(vcard);
+    const dataUrl = `data:text/vcard;charset=utf-8,${encodedVCard}`;
+
+    // Crear un enlace temporal y hacer clic
+    const link = document.createElement('a');
+    link.href = dataUrl;
+    link.setAttribute('download', 'jarol-rojas.vcf');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   }
 }
