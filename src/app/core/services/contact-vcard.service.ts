@@ -17,16 +17,10 @@ URL:https://jarolrojas.dev
 TITLE:Desarrollador de Software
 END:VCARD`;
 
-    // Crear un data URL con el tipo MIME correcto
+    // Navegar directamente al data URL sin atributo download
     const encodedVCard = encodeURIComponent(vcard);
-    const dataUrl = `data:text/vcard;charset=utf-8,${encodedVCard}`;
-
-    // Crear un enlace temporal y hacer clic
-    const link = document.createElement('a');
-    link.href = dataUrl;
-    link.setAttribute('download', 'jarol-rojas.vcf');
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    window.location.href = `data:text/vcard;charset=utf-8,${encodedVCard}`;
+  }
+}
   }
 }
