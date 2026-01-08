@@ -11,6 +11,6 @@ export class Contact {
   constructor(private vcardService: ContactVcardService) {}
 
   downloadContact(): void {
-    this.vcardService.openVCardInBrowser();
+    this.vcardService.openVCard();
   }
 }
