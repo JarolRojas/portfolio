@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ContactVcardService } from '@core/services/contact-vcard.service';
+import { ContactVcardService } from '../../core/services/contact-vcard.service';
 
 @Component({
   selector: 'app-contact',
