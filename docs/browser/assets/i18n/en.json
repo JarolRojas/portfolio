@@ -1,0 +1,12 @@
+{
+  "PORTFOLIO": "Portfolio",
+  "NAVBAR": {
+    "HOME": "Home",
+    "ABOUT": "About Me",
+    "EXPERIENCE": "Experience",
+    "SKILLS": "Skills",
+    "PROJECTS": "Projects",
+    "EDUCATION": "Education",
+    "CONTACT": "Contact"
+  }
+}
