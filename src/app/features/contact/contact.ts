@@ -10,7 +10,7 @@ import { ContactVcardService } from '../../core/services/contact-vcard.service';
 export class Contact {
   constructor(private vcardService: ContactVcardService) {}
 
-  downloadContact(): void {
+  saveContact(): void {
     this.vcardService.openVCard();
   }
 }
