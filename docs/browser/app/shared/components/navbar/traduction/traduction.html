@@ -1,7 +1,0 @@
-<div class="language-selector">
-  <select [ngModel]="currentLang$ | async" (ngModelChange)="changeLang($event)">
-    @for (lang of languages; track lang) {
-      <option [value]="lang">{{ lang | uppercase }}</option>
-    }
-  </select>
-</div>
