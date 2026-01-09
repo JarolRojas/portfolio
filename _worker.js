@@ -6,8 +6,10 @@ export default {
     if (url.pathname.endsWith('.vcf')) {
       const response = await env.ASSETS.fetch(request);
       const newResponse = new Response(response.body, response);
-      newResponse.headers.set('Content-Type', 'text/vcard;charset=utf-8');
-      newResponse.headers.set('Content-Disposition', 'inline; filename="jarol-rojas.vcf"');
+      // Usar text/x-vcard que tiene mejor soporte en Android
+      newResponse.headers.set('Content-Type', 'text/x-vcard');
+      // Sin Content-Disposition para que Android lo abra directamente
+      newResponse.headers.delete('Content-Disposition');
       return newResponse;
     }
 
