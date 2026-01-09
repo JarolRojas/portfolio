@@ -18,36 +18,44 @@ END:VCARD`;
   constructor() {}
 
   async openVCard(): Promise<void> {
-    // Crear el archivo VCF como Blob
-    const blob = new Blob([this.vcardData], { type: 'text/vcard' });
-    const file = new File([blob], 'jarol-rojas.vcf', { type: 'text/vcard' });
+    const blob = new Blob([this.vcardData], { type: 'text/x-vcard' });
+    const file = new File([blob], 'jarol-rojas.vcf', { type: 'text/x-vcard' });
 
-    // Método 1: Web Share API (mejor para móviles - abre diálogo nativo)
+    // Método 1: Web Share API (Android Chrome, Safari iOS 15+)
     if (this.canUseWebShare(file)) {
       try {
-        await navigator.share({
-          files: [file],
-          title: 'Contacto de Jarol Rojas',
-        });
+        await navigator.share({ files: [file] });
         return;
       } catch (error) {
-        // Si el usuario cancela o hay error, intentar método alternativo
-        if ((error as Error).name !== 'AbortError') {
-          console.warn('Web Share falló, usando método alternativo');
-        } else {
-          return; // Usuario canceló, no hacer nada más
-        }
+        if ((error as Error).name === 'AbortError') return;
       }
     }
 
-    // Método 2: Data URI (funciona en muchos móviles)
+    // Método 2: Para iOS Safari - abrir data URI en nueva ventana
+    if (this.isIOS()) {
+      const dataUri = `data:text/x-vcard;charset=utf-8,${encodeURIComponent(this.vcardData)}`;
+      const newWindow = window.open(dataUri, '_blank');
+      if (newWindow) return;
+    }
+
+    // Método 3: Para Android - usar Blob URL con window.open
+    if (this.isAndroid()) {
+      const blobUrl = URL.createObjectURL(blob);
+      const opened = window.open(blobUrl, '_self');
+      if (opened) {
+        setTimeout(() => URL.revokeObjectURL(blobUrl), 1000);
+        return;
+      }
+    }
+
+    // Método 4: Data URI directo
     if (this.isMobileDevice()) {
-      const dataUri = `data:text/vcard;charset=utf-8,${encodeURIComponent(this.vcardData)}`;
+      const dataUri = `data:text/x-vcard;charset=utf-8,${encodeURIComponent(this.vcardData)}`;
       window.location.href = dataUri;
       return;
     }
 
-    // Método 3: Descarga tradicional (para desktop)
+    // Método 5: Descarga para desktop
     this.downloadVCard(blob);
   }
 
@@ -60,10 +68,16 @@ END:VCARD`;
     );
   }
 
+  private isIOS(): boolean {
+    return /iPad|iPhone|iPod/.test(navigator.userAgent) && !(window as any).MSStream;
+  }
+
+  private isAndroid(): boolean {
+    return /Android/i.test(navigator.userAgent);
+  }
+
   private isMobileDevice(): boolean {
-    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-      navigator.userAgent
-    );
+    return this.isIOS() || this.isAndroid() || /webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
   }
 
   private downloadVCard(blob: Blob): void {
